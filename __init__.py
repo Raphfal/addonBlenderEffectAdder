@@ -1,7 +1,7 @@
 bl_info = {
-    "name": "Mon Addon",
+    "name": "Effect Adder",
     "blender": (3, 0, 0),
-    "category": "Object",
+    "category": "Modeling",
 }
 
 from . import operators

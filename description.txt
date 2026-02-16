@@ -1,7 +1,96 @@
-In the addon you choose the mesh you want to set the effect and the effect you want to add.
-Then the effect is set where the 3d cursor is placed.
-After the effect is set you choose the noise (randomness of the seed),
-the size of the effect and the thickness if you need
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-Fist effect - thumbprint (like on lego stopmotion animation )
+RESUME:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+A Blender addon that applies procedural effects (like thumbprints) to selected meshes at the 3D cursor location.
+Users select a mesh, choose an effect type, and customize it with adjustable parameters:
+noise (randomness), rotation (angle), size (scale), and thickness (depth).
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+FULL DESCRIPTION:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+In the addon you choose the mesh you want to set the effect and the effect you want to add.
+Then you push the apply button and the effect is set where the 3d cursor is placed.
+After the effect is set you choose the noise (randomness of the seed),
+rotation, the size of the effect and the thickness if you need
+
+First effect - thumbprint (like on lego stopmotion animation )
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DEVELOPMENT STEPS:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+1. Update __init__.py
+   - Change addon name to "Effect Adder"
+   - Update category to "Modeling"
+   - Ensure all modules are properly imported
+
+2. Create operators.py - Main Effect Operator
+   - Create EFFECTADDER_OT_apply_effect operator class
+   - Add mesh selection property (enum list of scene meshes)
+   - Add effect type property (dropdown: "thumbprint", etc.)
+   - Add parameters: noise (float), rotation (float), size (float), thickness (float)
+   - Implement execute() to:
+     * Get selected mesh
+     * Create/duplicate effect geometry (thumbprint shape)
+     * Position it at 3D cursor location
+     * Apply transformations (size, rotation, thickness)
+     * Add noise/randomness using seed
+     * Apply boolean modifier (if needed)
+
+3. Create panel.py - UI Interface
+   - Create main panel in VIEW_3D > UI sidebar
+   - Add mesh selector dropdown
+   - Add effect type selector
+   - Add property sliders:
+     * Noise: 0.0-1.0
+     * Rotation: 0-360 degrees
+     * Size: 0.1-10.0
+     * Thickness: 0.1-2.0
+   - Add "Apply Effect" button that calls the operator
+   - Add preview/live update option (optional)
+
+4. Create Effect Assets/Geometry
+   - Design thumbprint mesh (geometry that looks like a thumbprint indentation)
+   - Store as .blend file or generate procedurally
+   - Can be a simple indented dome or custom shape
+
+5. Add Properties Management
+   - Store effect settings in scene or mesh custom properties
+   - Allow saving/loading effect presets
+
+6. Testing & Polish
+   - Test with various meshes
+   - Test all parameter ranges
+   - Ensure boolean operations work correctly
+   - Add error handling for edge cases
+   - Create user-friendly tooltips
+
+7. Expand Effects
+   - Add more effect types (fingerprint, scratch, dent, etc.)
+   - Create effect library system
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+VS CODE EXTENSIONS TO INSTALL:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+Essential:
+- Python (ms-python.python) - Core Python support, debugging, linting
+- Pylance (ms-python.vscode-pylance) - Advanced Python type checking and IntelliSense
+
+Highly Recommended:
+- Blender Development (JacquesLucke.blender-development) - Blender-specific tools and debugging
+- Python Docstring Generator (njpwerner.autodocstring) - Auto-generate docstrings for Blender API
+- GitLens (eamodio.gitlens) - Git integration for version control
+
+Nice to Have:
+- Better Comments (aaron-bond.better-comments) - Color-code TODO/FIXME comments
+- Black Formatter (ms-python.black-formatter) - Python code formatting
+- Error Lens (usernamehw.errorlens) - Inline error display
+
+Priority: Install Python + Pylance + Blender Development for best experience
+
+
 
