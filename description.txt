@@ -1,0 +1,7 @@
+In the addon you choose the mesh you want to set the effect and the effect you want to add.
+Then the effect is set where the 3d cursor is placed.
+After the effect is set you choose the noise (randomness of the seed),
+the size of the effect and the thickness if you need
+
+Fist effect - thumbprint (like on lego stopmotion animation )
+
